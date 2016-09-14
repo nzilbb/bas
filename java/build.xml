@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="nzilbb.ag" default="all" basedir=".">
+<project name="nzilbb.bas" default="all" basedir=".">
   <description>Java implemetation for BAS speech web services.</description>
   <!-- set global properties for this build -->
   <property name="src"   location="."/>
@@ -53,6 +53,25 @@
       <!-- include this build file -->
       <fileset dir="." includes="build.xml" />      
     </jar>
+
+    <!-- Create a jar that includes the apache commons dependencies -->
+    <jar jarfile="${dist}/${ant.project.name}-complete.jar" 
+	 basedir="${build}">      
+      <!-- include ISO resources -->
+      <fileset dir="${src}" includes="${resources}" />
+      <!-- include source code -->
+      <fileset dir="${src}" includes="${srcfiles}" />
+      <!-- include this build file -->
+      <fileset dir="." includes="build.xml" />      
+      <!-- include dependencies -->
+      <zipfileset src="lib/commons-logging.jar" />
+      <zipfileset src="lib/httpclient.jar" />
+      <zipfileset src="lib/httpclient-win.jar" />
+      <zipfileset src="lib/httpcore.jar" />
+      <zipfileset src="lib/httpmime.jar" />
+
+    </jar>
+
     <delete dir="${build}"/>
   </target>
 
@@ -84,7 +103,7 @@
 	fork="true"
 	>
       <classpath>
-	<pathelement path=".;${dist}/${ant.project.name}.jar;${junitjar};lib/httpclient.jar;lib/httpcore.jar;lib/httpmime.jar;lib/commons-logging.jar"/>
+	<pathelement path=".;${dist}/${ant.project.name}-complete.jar;${junitjar}"/>
       </classpath>
       <jvmarg value="-ea"/>
       <formatter type="plain" usefile="false" />

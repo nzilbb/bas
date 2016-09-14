@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -44,6 +45,13 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 public class BAS
 {
    // Attributes:
+   
+   /**
+    * Version of the BAS services this API is designed for.
+    * @return Version of the BAS services this API is designed for.
+    */
+   public String getVersion() { return "2.10"; }
+
 
    /**
     * URL for the MAUSBasic service.
@@ -133,6 +141,47 @@ public class BAS
       return new BASResponse(result.getContent());
    } // end of MAUSBasic()
    
+   /**
+    * Invokes the G2P service for converting orthography into phonemic transcription.
+    * <p>This convenience method takes a String as the text, and assumes <var>iform</var> = "txt", use {@link #G2P(String,InputStream,String,String,int,String,String,String,boolean,boolean,boolean,boolean,String)} for full set of options.
+    * @param lng <a href="https://tools.ietf.org/html/rfc5646">RFC 5646</a> tag for identifying the language.
+    * @param txt The text to transform as a String.
+    * @param outsym Ouput phoneme symbol inventory:
+    *  <ul>
+    *   <li>"sampa" - language-specific SAMPA variant is the default.</li> 
+    *   <li>"x-sampa" - language independent X-SAMPA and IPA can be chosen.</li> 
+    *   <li>"maus-sampa" - maps the output to a language-specific phoneme subset that WEBMAUS can process.</li> 
+    *   <li>"ipa" - Unicode-encoded IPA.</li> 
+    *   <li>"arpabet" - supported for eng-US only</li>
+    * </ul>
+    * @param featset - Feature set used for grapheme-phoneme conversion. 
+    *  <ul>
+    *   <li>"standard" comprises a letter window centered on the grapheme to be converted.</li> 
+    *   <li>"extended" set additionally includes part of speech and morphological analyses.</li>
+    *  </ul>
+    * @param oform Output format:
+    *  <ul>
+    *   <li>"bpf" indicates the BAS Partitur Format (BPF) file with a KAN tier.</li> 
+    *   <li>"bpfs" differs from "bpf" only in that respect, that the phonemes are separated by blanks. In case of TextGrid input, both "bpf" and "bpfs" require the additional parameters "tgrate" and "tgitem". The content of the TextGrid tier "tgitem" is stored as a word chunk segmentation in the partiture tier TRN.</li> 
+    *   <li>"txt" indicates a replacement of the input words by their transcriptions; single line output without punctuation, where phonemes are separated by blanks and words by tabulators.</li> 
+    *   <li>"tab" returns the grapheme phoneme conversion result in form of a table with two columns. The first column comprises the words, the second column their blank-separated transcriptions.</li> 
+    *   <li>"exttab" results in a 5-column table. The columns contain from left to right: words, transcriptions, part of speech, morpheme segmentations, and morpheme class segmentations.</li> 
+    *   <li>"lex" transforms the table to a lexicon, i.e. words are unique and sorted.</li> 
+    *   <li>"extlex" provides the same information as "exttab" in a unique and sorted manner. For all lex and tab outputs columns are separated by ';'.</li> 
+    *   <li>"exttcf" which is currently available for German and English only additionally adds part of speech (STTS tagset), morphs, and morph classes.</li>
+    *   <li>With "tg" and "exttg" TextGrid output is produced.</li>
+    *  </ul>
+    * @param syl whether or not word stress is to be added to the output transcription. 
+    * @param stress whether or not the output transcription is to be syllabified. 
+    * @return The result of this call.
+    * @throws IOException If an IO error occurs.
+    * @throws ParserConfigurationException If the XML parser for parsing the response could not be configured.
+    */
+   public BASResponse G2P(String lng, String txt, String outsym, String featset, String oform, boolean syl, boolean stress)
+    throws IOException, ParserConfigurationException
+   {
+      return G2P(lng, new ByteArrayInputStream(txt.getBytes("UTF-8")), "txt", "", 16000, outsym, featset, oform, syl, stress, true, false, "no");
+   }
    /**
     * Invokes the G2P service for converting orthography into phonemic transcription.
     * <p>This method cannot have <var>iform</var> set to "tg", use {@link #G2P(String,InputStream,String,String,int,String,String,String,boolean,boolean,boolean,boolean,String)} for full set of options.
