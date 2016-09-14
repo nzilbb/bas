@@ -34,19 +34,43 @@ public class TestBAS
 {
    @Test public void MAUSBasic() 
    {
-      BAS bas = new BAS();
-
-      File signal = new File(getDir(), "test.wav");
-      File text = new File(getDir(), "test.txt");
-
       try
       {
+	 BAS bas = new BAS();
+	 
+	 File signal = new File(getDir(), "test.wav");
+	 File text = new File(getDir(), "test.txt");
+	 
 	 BASResponse response = bas.MAUSBasic("eng-NZ", signal, text);
 	 assertEquals(true, response.getSuccess());
 	 System.out.println(response.getOutput());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
 	 assertNotNull(response.getDownloadLink());
 	 File result = new File(getDir(), "result.TextGrid");
+	 response.saveDownload(result);
+	 // we can't really validate the result, as it may change as the implementation changes
+	 result.delete();
+      }
+      catch(Exception exception)
+      {
+	 fail(exception.toString());
+      }
+   }
+
+   @Test public void G2P() 
+   {
+      try
+      {
+	 BAS bas = new BAS();
+	 
+	 File text = new File(getDir(), "test.txt");
+	 
+	 BASResponse response = bas.G2P("eng", text, "txt", "ipa", "extended", "txt", true, true, true, false, "no");
+	 assertEquals(true, response.getSuccess());
+	 System.out.println(response.getOutput());
+	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertNotNull(response.getDownloadLink());
+	 File result = new File(getDir(), "result.txt");
 	 response.saveDownload(result);
 	 // we can't really validate the result, as it may change as the implementation changes
 	 result.delete();
