@@ -42,8 +42,8 @@ public class TestBAS
 	 File text = new File(getDir(), "test.txt");
 	 
 	 BASResponse response = bas.MAUSBasic("eng-NZ", signal, text);
-	 assertEquals(true, response.getSuccess());
 	 System.out.println(response.getOutput());
+	 assertEquals(true, response.getSuccess());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
 	 assertNotNull(response.getDownloadLink());
 	 File result = new File(getDir(), "result.TextGrid");
@@ -66,8 +66,8 @@ public class TestBAS
 	 File text = new File(getDir(), "test.txt");
 	 
 	 BASResponse response = bas.G2P("eng", text, "txt", "ipa", "extended", "txt", true, true, true, false, "no");
-	 assertEquals(true, response.getSuccess());
 	 System.out.println(response.getOutput());
+	 assertEquals(true, response.getSuccess());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
 	 assertNotNull(response.getDownloadLink());
 	 File result = new File(getDir(), "result.txt");
