@@ -30,17 +30,23 @@ import java.io.IOException;
  * <p>This is ostensibly a <a href="https://tools.ietf.org/html/rfc5646">RFC 5646</a> tag
  * for identifying the language, but actually the service appears to accept only 3-letter 
  * (ISO639-2) not 2-letter (ISO639-1) language codes.
- * @author Robert Fromont robert@fromont.net.nz
+ * <p>For example, assuming that <code>tagger = new LanguageTag();</code>
+ * <ul>
+ *  <li><code>tagger.tag("eng")</code> returns <tt>"eng"</tt></li>
+ *  <li><code>tagger.tag("ENG")</code> returns <tt>"eng"</tt></li>
+ *  <li><code>tagger.tag("en")</code> returns <tt>"eng"</tt></li>
+ *  <li><code>tagger.tag("en-NZ")</code> returns <tt>"eng-NZ"</tt></li>
+ *  <li><code>tagger.tag("eng")</code> returns <tt>"eng"</tt></li>
+ * </ul>
+ * @author Robert Fromont robert.fromont@canterbury.ac.nz
  */
 public class LanguageTag
 {
    // Attributes:
 
-
    /**
     * A map of ISO639-2 (3-letter) codes to language names.
     * @see #getIso639Map2ToName()
-    * @see #setIso639Map2ToName(Properties)
     */
    protected Properties iso639Map2ToName = new Properties();
    /**
@@ -48,33 +54,20 @@ public class LanguageTag
     * @return A map of ISO639-2 (3-letter) codes to language names.
     */
    public Properties getIso639Map2ToName() { return iso639Map2ToName; }
-   /**
-    * Setter for {@link #iso639Map2ToName}: A map of ISO639-2 (3-letter) codes to language names.
-    * @param newIso639Map2ToName A map of ISO639-2 (3-letter) codes to language names.
-    */
-   public void setIso639Map2ToName(Properties newIso639Map2ToName) { iso639Map2ToName = newIso639Map2ToName; }
 
    /**
     * A map of language names to ISO639-2 (3-letter) codes. Names are all lowercase and in English.
     * @see #getIso639MapNameTo2()
-    * @see #setIso639MapNameTo2(Properties)
     */
    protected Properties iso639MapNameTo2 = new Properties();
    /**
     * Getter for {@link #iso639MapNameTo2}: A map of language names to ISO639-2 (3-letter) codes.
     * @return A map of language names to ISO639-2 (3-letter) codes. Names are all lowercase and in English.
     */
-   public Properties getIso639MapNameTo2() { return iso639MapNameTo2; }
-   /**
-    * Setter for {@link #iso639MapNameTo2}: A map of language names to ISO639-2 (3-letter) codes. Names are all lowercase and in English.
-    * @param newIso639MapNameTo2 A map of language names to ISO639-2 (3-letter) codes.
-    */
-   public void setIso639MapNameTo2(Properties newIso639MapNameTo2) { iso639MapNameTo2 = newIso639MapNameTo2; }
    
    /**
     * A map of ISO639-1 (2-letter) to ISO639-2 (3-letter) codes.
     * @see #getIso639Map1to2()
-    * @see #setIso639Map1to2(Properties)
     */
    protected Properties iso639Map1To2 = new Properties();
    /**
@@ -82,16 +75,10 @@ public class LanguageTag
     * @return A map of ISO639-1 (2-letter) to ISO639-2 (3-letter) codes.
     */
    public Properties getIso639Map1to2() { return iso639Map1To2; }
-   /**
-    * Setter for {@link #iso639Map1To2}: A map of ISO639-1 (2-letter) to ISO639-2 (3-letter) codes.
-    * @param newIso639Map1to2 A map of ISO639-1 (2-letter) to ISO639-2 (3-letter) codes.
-    */
-   public void setIso639Map1to2(Properties newIso639Map1to2) { iso639Map1To2 = newIso639Map1to2; }
 
    /**
     * A map of ISO639-2 (3-letter) to ISO639-1 (2-letter) codes.
     * @see #getIso639Map1To2()
-    * @see #setIso639Map1To2(Properties)
     */
    protected Properties iso639Map2To1 = new Properties();
    /**
@@ -99,11 +86,6 @@ public class LanguageTag
     * @return A map of ISO639-2 (3-letter) to ISO639-1 (2-letter) codes.
     */
    public Properties getIso639Map1To2() { return iso639Map2To1; }
-   /**
-    * Setter for {@link #iso639Map2To1}: A map of ISO639-2 (3-letter) to ISO639-1 (2-letter) codes.
-    * @param newIso639Map1To2 A map of ISO639-2 (3-letter) to ISO639-1 (2-letter) codes.
-    */
-   public void setIso639Map1To2(Properties newIso639Map1To2) { iso639Map2To1 = newIso639Map1To2; }
    
    // Methods:
    
@@ -144,7 +126,6 @@ public class LanguageTag
       }
    } // end of constructor
 
-   
    /**
     * Returns the given tag, but converted to an RFC 5646 code with a three-letter primary language code, if possible.
     * @param language A language identifiter, which may be an RFC 5646 code, or a language name.

@@ -43,10 +43,15 @@ import org.xml.sax.*;
 import org.w3c.dom.*;
 
 /**
- * Response from BAS request
- * @author Robert Fromont robert@fromont.net.nz
+ * Response from BAS request.
+ * <p>Assuming you've called a BAS method, something like <br> <code>BASResponse response = new BAS().MAUSBasic(language, signal, text);</code>
+ * <ul>
+ *  <li><code>response.getSuccess()</code> is <tt>true</tt> if the request succeeded</li>
+ *  <li><code>response.getDownloadLink()</code> returns the URL of the results file</li>
+ *  <li><code>response.saveDownload()</code> downloads the results file and returns it</li>
+ * </ul>
+ * @author Robert Fromont robert.fromont@canterbury.ac.nz
  */
-
 public class BASResponse
 {
    // Attributes:
@@ -146,7 +151,6 @@ public class BASResponse
    /**
     * Original XML.
     * @see #getXml()
-    * @see #setXml(String)
     */
    protected String xml;
    /**
@@ -154,11 +158,6 @@ public class BASResponse
     * @return Original XML.
     */
    public String getXml() { return xml; }
-   /**
-    * Setter for {@link #xml}: Original XML.
-    * @param newXml Original XML.
-    */
-   public void setXml(String newXml) { xml = newXml; }
    
    // Methods:
    
@@ -178,13 +177,25 @@ public class BASResponse
       xpath = xpathFactory.newXPath();
       loadXml(stream);
    } // end of constructor
+
+   /**
+    * Convenience function for downloading the result, if any.
+    * @return A temporary file (which the caller has the responsibility to delete), or null if content couldn't be downloaded.
+    * @throws IOException If an IO error occurs.
+    */
+   public File saveDownload()
+    throws IOException
+   {
+      if (getDownloadLink() == null) return null;
+      return saveDownload(File.createTempFile("BAS", getDownloadLink().getFile()));
+   } // end of saveDownload()
    
    /**
     * Loads XML response from an InputStream
     * @param stream The stream containing the XML of the response.
     * @throws IOException If there's an IO error.
     */
-   public void loadXml(InputStream stream)
+   protected void loadXml(InputStream stream)
       throws IOException
    {
       BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
@@ -226,7 +237,6 @@ public class BASResponse
       }
       
    } // end of loadXml()
-
    
    /**
     * Convenience function for downloading the result, if any.
@@ -257,25 +267,12 @@ public class BASResponse
    } // end of saveDownload()
 
    /**
-    * Convenience function for downloading the result, if any.
-    * @return A temporary file (which the caller has the responsibility to delete), or null if content couldn't be downloaded.
-    * @throws IOException If an IO error occurs.
-    */
-   public File saveDownload()
-    throws IOException
-   {
-      if (getDownloadLink() == null) return null;
-      return saveDownload(File.createTempFile("BAS", getDownloadLink().getFile()));
-   } // end of saveDownload()
-
-   
-   /**
     * Returns a single string result for the given xpath string
     * @param sXpath The XPath expression
     * @return Result matching the Xpath, or ""
     * @throws XPathExpressionException If <var>sXpath</var> is invalid.
     */
-   public String getXpathString(String sXpath)
+   protected String getXpathString(String sXpath)
       throws XPathExpressionException
    {
       if (document == null) return "";
@@ -289,70 +286,19 @@ public class BASResponse
     * @return Result matching the Xpath, or ""
     * @throws XPathExpressionException If <var>sXpath</var> is invalid.
     */
-   public String getXpathString(String sXpath, Node node)
+   protected String getXpathString(String sXpath, Node node)
       throws XPathExpressionException
    {
       String s = xpath.evaluate(sXpath, node);
       return tidyText(s);
    } // end of getXpathString()
-   
-   /**
-    * Returns a list of string results for the given xpath string
-    * @param sXpath The XPath expression
-    * @return A possibly empty list of results matching the Xpath
-    * @throws XPathExpressionException If <var>sXpath</var> is invalid.
-    */
-   public Vector<String> getXpathStrings(String sXpath)
-      throws XPathExpressionException
-   {
-      Vector<String> v = new Vector<String>();
-      if (document != null)
-      {
-	 NodeList items = (NodeList) xpath.evaluate(
-	    sXpath, document.getDocumentElement(), XPathConstants.NODESET);
-	 if (items != null)	    
-	 {
-	    for (int j = 0; j < items.getLength(); j++)
-	    {
-	       Node item = items.item(j);
-	       v.add(tidyText(item.getTextContent()));
-	    } // next item
-	 }
-      }
-      return v;
-   } // end of getXpathStrings()
-   
-   /**
-    * Returns a list of node results for the given xpath string
-    * @param sXpath The XPath expression
-    * @return A poosibly empty list of results matching the Xpath
-    * @throws XPathExpressionException If <var>sXpath</var> is invalid.
-    */
-   public Vector<Node> getXpathNodes(String sXpath)
-      throws XPathExpressionException
-   {
-      Vector<Node> v = new Vector<Node>();
-      if (document != null)
-      {
-	 NodeList items = (NodeList) xpath.evaluate(
-	    sXpath, document.getDocumentElement(), XPathConstants.NODESET);
-	 if (items != null)	    
-	 {
-	    for (int j = 0; j < items.getLength(); j++)
-	    {
-	       v.add(items.item(j));
-	    } // next item
-	 }
-      }
-      return v;
-   } // end of getXpathStrings()
-   
+        
    /**
     * Tidies up the given string - e.g. replaces series' of whitespaces characters with a single space.
     * @param s The original text.
     * @return A tidy version of the given string.
     */
-   public String tidyText(String s)
+   protected String tidyText(String s)
    {
       if (s == null) return "";
       return s

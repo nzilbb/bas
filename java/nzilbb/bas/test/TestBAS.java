@@ -28,6 +28,9 @@ import static org.junit.Assert.*;
 import java.net.URL;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.StringWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 import nzilbb.bas.*;
 
 public class TestBAS
@@ -43,8 +46,8 @@ public class TestBAS
 	 
 	 BASResponse response = bas.MAUSBasic("eng-NZ", signal, text);
 	 System.out.println(response.getOutput());
-	 assertEquals(true, response.getSuccess());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
 	 assertNotNull(response.getDownloadLink());
 	 File result = new File(getDir(), "result.TextGrid");
 	 response.saveDownload(result);
@@ -53,7 +56,13 @@ public class TestBAS
       }
       catch(Exception exception)
       {
-	 fail(exception.toString());
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	 catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
       }
    }
 
@@ -65,10 +74,10 @@ public class TestBAS
 	 
 	 File text = new File(getDir(), "test.txt");
 	 
-	 BASResponse response = bas.G2P("eng", text, "txt", "ipa", "extended", "txt", true, true, true, false, "no");
+	 BASResponse response = bas.G2P("eng", text, "txt", "maus-sampa", "extended", "bpf", true, true, true, false, "no");
 	 System.out.println(response.getOutput());
-	 assertEquals(true, response.getSuccess());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
 	 assertNotNull(response.getDownloadLink());
 	 File result = new File(getDir(), "result.txt");
 	 response.saveDownload(result);
@@ -77,7 +86,136 @@ public class TestBAS
       }
       catch(Exception exception)
       {
-	 fail(exception.toString());
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	       catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
+      }
+   }
+
+   @Test public void MAUSWithNulls() 
+   {
+      try
+      {
+	 BAS bas = new BAS();
+	 
+	 File wav = new File(getDir(), "test.wav");
+	 File bpf = new File(getDir(), "test.par");
+	 
+	 BASResponse response = bas.MAUS("eng-NZ", wav, bpf, "emuR", "ipa");
+	 System.out.println(response.getOutput());
+	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
+	 assertNotNull(response.getDownloadLink());
+	 File result = new File(getDir(), "result.emuR");
+	 response.saveDownload(result);
+	 // we can't really validate the result, as it may change as the implementation changes
+	 result.delete();
+	 
+      }
+      catch(Exception exception)
+      {
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	       catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
+      }
+   }
+
+   @Test public void Phon2Syl() 
+   {
+      try
+      {
+	 BAS bas = new BAS();
+	 
+	 File bpf = new File(getDir(), "test.par");
+	 
+	 BASResponse response = bas.Pho2Syl("eng-NZ", bpf, "KAN", true, "tg", 22050);
+	 System.out.println(response.getOutput());
+	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
+	 assertNotNull(response.getDownloadLink());
+	 File result = new File(getDir(), "result.TextGrid");
+	 response.saveDownload(result);
+	 // we can't really validate the result, as it may change as the implementation changes
+	 result.delete();
+	 
+      }
+      catch(Exception exception)
+      {
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	       catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
+      }
+   }
+
+   @Test public void TTS() 
+   {
+      try
+      {
+	 BAS bas = new BAS();
+	 
+	 BASResponse response = bas.TTS("Hallo Welt");
+	 System.out.println(response.getOutput());
+	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
+	 assertNotNull(response.getDownloadLink());
+	 File result = new File(getDir(), "result.wav");
+	 response.saveDownload(result);
+	 // we can't really validate the result, as it may change as the implementation changes
+	 result.delete();
+	 
+      }
+      catch(Exception exception)
+      {
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	       catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
+      }
+   }
+
+   @Test public void TextAlign() 
+   {
+      try
+      {
+	 BAS bas = new BAS();
+
+	 File csv = new File(getDir(), "test.csv");
+	 
+	 BASResponse response = bas.TextAlign(csv, "g2p_nze");
+	 System.out.println(response.getOutput());
+	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
+	 assertEquals(true, response.getSuccess());
+	 assertNotNull(response.getDownloadLink());
+	 File result = new File(getDir(), "result.zip");
+	 response.saveDownload(result);
+	 // we can't really validate the result, as it may change as the implementation changes
+	 result.delete();
+	 
+      }
+      catch(Exception exception)
+      {
+	 StringWriter sw = new StringWriter();
+	 PrintWriter pw = new PrintWriter(sw);
+	 exception.printStackTrace(pw);
+	 try { sw.close(); }
+	       catch(IOException x) {}
+	 pw.close();	
+	 fail(exception.toString() + "\n" + sw);
       }
    }
 

@@ -80,7 +80,8 @@
     <mkdir dir="${javadoc}"/>
     <javadoc destdir="${javadoc}"
 	     classpath=".;lib/httpclient.jar;lib/httpcore.jar;lib/httpmime.jar"
-	     Author="yes"
+	     Author="yes" 
+	     access="public"
 	     >
       <fileset dir="${src}" includes="${srcfiles}" excludes="${srctests} ${srctestseditpath}" />
     </javadoc>
