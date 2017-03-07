@@ -44,7 +44,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
  * <ul>
  *  <li><em>G2P</em> for converting orthographic transcript into phonemic transcription</li>
  *  <li><em>MAUS</em> for forced alignment given a WAV file and a phonemic transcription</li>
- *  <li><em>MAUSBasic</em> combines G2P and MAuS for forced alignment given a WAV file and a plain text orthrogaphic transcript</li>
+ *  <li><em>MAUSBasic</em> combines G2P and MAUS for forced alignment given a WAV file and a plain text orthrogaphic transcript</li>
  *  <li><em>Pho2Syl</em> adding syllabification to phonemic transcriptions</li>
  *  <li><em>TTS</em> for transforming a transcript of German text into an audio file (Text-to-Speech)</li>
  *  <li><em>TextAlign</em> for aligning two representations of text, e.g. letters in orthographic transcript with phonemes in a phonemic transcription.</li>
@@ -150,7 +150,7 @@ public class BAS
     */
    protected String TTSUrl = "https://clarin.phonetik.uni-muenchen.de/BASWebServices/services/runTTSFile";
    /**
-    * Getter for {@link #TTSUrl}: URL for MaryTTS service.
+    * Getter for {@link #TTSUrl}: URL for MaryTTS service - default: https://clarin.phonetik.uni-muenchen.de/BASWebServices/services/runTTSFile
     * @return URL for MaryTTS service.
     */
    public String getTTSUrl() { return TTSUrl; }
@@ -193,7 +193,7 @@ public class BAS
    } // end of constructor
 
    /**
-    * Invokes the MAUSBasic service.
+    * Invokes the MAUSBasic service, which combines G2P and MAUS for forced alignment given a WAV file and a plain text orthrogaphic transcript.
     * @param LANGUAGE <a href="https://tools.ietf.org/html/rfc5646">RFC 5646</a> tag for identifying the language.
     * @param SIGNAL The signal, in WAV format.
     * @param TEXT The transcription of the text.
@@ -207,7 +207,7 @@ public class BAS
       return MAUSBasic(LANGUAGE, new FileInputStream(SIGNAL), new FileInputStream(TEXT));
    }   
    /**
-    * Invokes the MAUSBasic service.
+    * Invokes the MAUSBasic service, which combines G2P and MAUS for forced alignment given a WAV file and a plain text orthrogaphic transcript.
     * @param LANGUAGE <a href="https://tools.ietf.org/html/rfc5646">RFC 5646</a> tag for identifying the language.
     * @param SIGNAL The signal, in WAV format.
     * @param TEXT The transcription of the text.
