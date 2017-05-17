@@ -105,12 +105,12 @@ public class TestBAS
 	 File wav = new File(getDir(), "test.wav");
 	 File bpf = new File(getDir(), "test.par");
 	 
-	 BASResponse response = bas.MAUS("eng-NZ", wav, bpf, "emuR", "ipa");
+	 BASResponse response = bas.MAUS("eng-NZ", wav, bpf, "emuDB", "ipa");
 	 System.out.println(response.getOutput());
 	 if (response.getWarnings() != null) System.out.println(response.getWarnings());
 	 assertEquals(true, response.getSuccess());
 	 assertNotNull(response.getDownloadLink());
-	 File result = new File(getDir(), "result.emuR");
+	 File result = new File(getDir(), "result.emuDB");
 	 response.saveDownload(result);
 	 // we can't really validate the result, as it may change as the implementation changes
 	 result.delete();
