@@ -115,3 +115,32 @@ Invoke the TextAlign service for aligning two representations of text, e.g. lett
   + "dir"  + align the second column to the first.
   + "sym" symmetric alignment.
 
+## BASResponse
+
+Each method returns a BASResponse object, which you can interrogate to get the result of the request.
+
+### getSuccess()
+
+true if successful, false otherwise.
+
+### getDownloadLink()
+
+URL for downloading result.
+
+### getOutput()
+
+Output message.
+
+### getWarnings()
+
+Warning messages.
+
+### getXml()
+
+Original XML of the response.
+
+### saveDownload() / saveDownload(File file)
+
+Convenience function for downloading the result, if any.
+
+Returns a File object.
