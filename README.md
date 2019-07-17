@@ -33,7 +33,7 @@ ant javadoc
 ### MAUSBasic(String LANGUAGE, File SIGNAL, File TEXT)
 
 Invokes the MAUSBasic service, which combines G2P and MAUS for forced alignment given a WAV file and a plain text orthrogaphic transcript.
-- *LANGUAGE* (https://tools.ietf.org/html/rfc5646)[RFC 5646] tag for identifying the language.
+- *LANGUAGE* [RFC 5646](https://tools.ietf.org/html/rfc5646) tag for identifying the language.
 - *SIGNAL* The signal, in WAV format.
 - *TEXT* The transcription of the text.
 
@@ -41,7 +41,7 @@ Invokes the MAUSBasic service, which combines G2P and MAUS for forced alignment 
 Invokes the G2P service for converting orthography into phonemic transcription.
 
 This convenience method takes a String as the text, and assumes *iform* = "txt".
-- *lng* (https://tools.ietf.org/html/rfc5646)[RFC 5646] tag for identifying the language.
+- *lng* [RFC 5646](https://tools.ietf.org/html/rfc5646) tag for identifying the language.
 - *txt* The text to transform as a String.
 - *outsym* Ouput phoneme symbol inventory:
  - "sampa" - language-specific SAMPA variant is the default.
@@ -68,9 +68,9 @@ This convenience method takes a String as the text, and assumes *iform* = "txt".
 ### MAUS(String LANGUAGE, File SIGNAL, File BPF, String OUTFORMAT, String OUTSYMBOL)
 
 Invoke the general MAUS service, with mostly default options, for forced alignment given a WAV file and a phonemic transcription.
-- *LANGUAGE* (https://tools.ietf.org/html/rfc5646)[RFC 5646] tag for identifying the language.
+- *LANGUAGE* [RFC 5646](https://tools.ietf.org/html/rfc5646) tag for identifying the language.
 - *SIGNAL* The signal, in WAV format.
-- *BPF* Phonemic transcription of the utterance to be segmented. Format is a (http://www.bas.uni-muenchen.de/forschung/Bas/BasFormatseng.html)[BAS Partitur Format (BPF)] file with a KAN tier.
+- *BPF* Phonemic transcription of the utterance to be segmented. Format is a [BAS Partitur Format (BPF)](http://www.bas.uni-muenchen.de/forschung/Bas/BasFormatseng.html) file with a KAN tier.
 - *OUTFORMAT* Defines the output format:
  - "TextGrid" - a praat compatible TextGrid file
  - "par" or "mau-append" - the input BPF file with a new (or replaced) tier MAU
@@ -86,8 +86,8 @@ Invoke the general MAUS service, with mostly default options, for forced alignme
 ### Pho2Syl(String lng, File i, String tier, Boolean wsync, String oform, Integer rate)
 
 Invoke the Pho2Syl service to syllabify a phonemic transcription.
-- *lng (https://tools.ietf.org/html/rfc5646)[RFC 5646] tag for identifying the language.
-- *i Phonemic transcription of the utterance to be segmented. Format is a (http://www.bas.uni-muenchen.de/forschung/Bas/BasFormatseng.html)[BAS Partitur Format (BPF)] file with a KAN tier.
+- *lng [RFC 5646](https://tools.ietf.org/html/rfc5646) tag for identifying the language.
+- *i Phonemic transcription of the utterance to be segmented. Format is a [BAS Partitur Format (BPF)](http://www.bas.uni-muenchen.de/forschung/Bas/BasFormatseng.html) file with a KAN tier.
 - *tier Name of tier in the annotation file, whose content is to be syllabified.
 - *wsync Whether each word boundary is considered as syllable boundary.
 - *oform Output format:
