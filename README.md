@@ -24,11 +24,8 @@ if (response.getSuccess())
 
 ## API
 
-Below are the basic functions. For conveniences functions and other options, in the java directory, execute:
-```
-ant javadoc
-```
-...and check the resulting JavaDoc documentation.
+Below are the basic functions. For convenience functions and other options, check the
+[JavaDoc](https://htmlpreview.github.io/?https://github.com/nzilbb/bas/blob/master/java/javadoc/nzilbb/bas/BAS.html)
 
 ### MAUSBasic(String LANGUAGE, File SIGNAL, File TEXT)
 
@@ -117,7 +114,12 @@ Invoke the TextAlign service for aligning two representations of text, e.g. lett
 
 ## BASResponse
 
-Each method returns a BASResponse object, which you can interrogate to get the result of the request.
+Each method returns a BASResponse object, which you can interrogate to get the result of the request, which is summarized below.
+
+Check the 
+[JavaDoc](https://htmlpreview.github.io/?https://github.com/nzilbb/bas/blob/master/java/javadoc/nzilbb/bas/BASResponse.html)
+for more details.
+
 
 ### getSuccess()
 
