@@ -20,7 +20,7 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package nzilbb.bas.test;
+package nzilbb.bas;
 	      
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -31,7 +31,6 @@ import java.io.FileInputStream;
 import java.io.StringWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
-import nzilbb.bas.*;
 
 public class TestBAS
 {
@@ -159,7 +158,7 @@ public class TestBAS
       }
    }
 
-   @Test public void TTS() 
+  /*@Test*/ public void TTS() 
    {
       try
       {
