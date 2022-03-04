@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Overview for nzilbb.bas object model</title>
+  </head>
+  <body>
+
+    <p> API for calling the Bavarian Archive for Speech Signals (BAS) services: <br>
+      <a href="http://hdl.handle.net/11858/00-1779-0000-0028-421B-4">
+        http://hdl.handle.net/11858/00-1779-0000-0028-421B-4</a>
+    </p>
+
+    <h2> Usage </h2>
+
+    <p> You need to `import nzilbb.bas.BAS;` and then instantiate a `BAS` object: </p>
+
+    <pre>BAS bas = new BAS();</pre>
+
+
+    <p> Once that's done, you can invoke the function you need, and check/retrieve the
+    results, e.g.: </p>
+<pre>BASResponse response = bas.MAUSBasic("eng-NZ", new File("my.wav"), new File("my.txt"));
+if (response.getWarnings() != null) System.out.println(response.getWarnings());
+if (response.getSuccess()) {
+   response.saveDownload(new File("my.TextGrid"))
+}</pre>
+    
+  </body>
+</html>

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"nzilbb.bas","l":"BAS"},{"p":"nzilbb.bas","l":"BASResponse"},{"p":"nzilbb.bas","l":"LanguageTag"}]

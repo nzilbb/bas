@@ -3,7 +3,24 @@ API for calling the Bavarian Archive for Speech Signals (BAS) services:
 
 http://hdl.handle.net/11858/00-1779-0000-0028-421B-4
 
-Currently there is an API for Java, if we get time there might later be one for javascript and Python.
+### Prerequisites
+
+* Maven
+  ```
+  sudo apt install maven
+  ```
+
+### Build 
+
+```
+mvn package
+```
+
+### Build Documentation
+
+```
+mvn site
+```
 
 ## Usage
 
@@ -48,7 +65,7 @@ This convenience method takes a String as the text, and assumes *iform* = "txt".
   + "arpabet"  + supported for eng-US only
 - *featset*  + Feature set used for grapheme-phoneme conversion. 
   + "standard" comprises a letter window centered on the grapheme to be converted.
-  + "extended" set additionally includes part of speech and morphological analyses.</li>
+  + "extended" set additionally includes part of speech and morphological analyses.
 - *oform* Output format:
   + "bpf" indicates the BAS Partitur Format (BPF) file with a KAN tier.
   + "bpfs" differs from "bpf" only in that respect, that the phonemes are separated by blanks. In case of TextGrid input, both "bpf" and "bpfs" require the additional parameters "tgrate" and "tgitem". The content of the TextGrid tier "tgitem" is stored as a word chunk segmentation in the partiture tier TRN.
@@ -73,7 +90,7 @@ Invoke the general MAUS service, with mostly default options, for forced alignme
   + "par" or "mau-append"  + the input BPF file with a new (or replaced) tier MAU
   + "csv" or "mau"  + only the BPF MAU tier (CSV table)
   + "legacyEMU"  + a file with extension *.EMU that contains in the first part the Emu hlb file (*.hlb) and in the second part the Emu phonetic segmentation (*.phonetic)
-  + "emuR"  + an Emu compatible *_annot.json file</li>
+  + "emuR"  + an Emu compatible *_annot.json file
 - *OUTSYMBOL* Defines the encoding of phonetic symbols in output. 
   + "sampa"  + (default), phonetic symbols are encoded in language specific SAM-PA (with some coding differences to official SAM-PA
   + "ipa"  + the service produces UTF-8 IPA output.
@@ -89,7 +106,7 @@ Invoke the Pho2Syl service to syllabify a phonemic transcription.
 - *wsync* Whether each word boundary is considered as syllable boundary.
 - *oform* Output format:
   + "bpf"  + BAS Partiture format
-  + "tg"  + TextGrid format</li>
+  + "tg"  + TextGrid format
 - *rate* Only needed if *oform* = "tg" (TextGrid); Sample rate to convert sample values from BAS partiture file to seconds in TextGrid. 
 
 ### TTS(String INPUT_TEXT)
