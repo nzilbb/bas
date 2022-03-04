@@ -42,7 +42,7 @@ if (response.getSuccess())
 ## API
 
 Below are the basic functions. For convenience functions and other options, check the
-[JavaDoc](https://htmlpreview.github.io/?https://github.com/nzilbb/bas/blob/master/java/javadoc/nzilbb/bas/BAS.html)
+[full documentation](https://nzilbb.github.io/bas/)
 
 ### MAUSBasic(String LANGUAGE, File SIGNAL, File TEXT)
 
