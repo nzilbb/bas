@@ -6,7 +6,7 @@
 
   <groupId>nzilbb</groupId>
   <artifactId>nzilbb.bas</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>nzilbb.bas</name>
   <description>API for calling the Bavarian Archive for Speech Signals (BAS) services</description>
   <url>https://github.com/nzilbb/bas/</url>

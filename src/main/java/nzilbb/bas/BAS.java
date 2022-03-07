@@ -104,7 +104,7 @@ public class BAS {
    * @see #getG2PUrl()
    * @see #setG2PUrl(String)
    */
-  protected String G2PUrl = "http://clarin.phonetik.uni-muenchen.de/BASWebServices/services/runG2P";
+  protected String G2PUrl = "https://clarin.phonetik.uni-muenchen.de/BASWebServices/services/runG2P";
   /**
    * Getter for {@link #G2PUrl}: URL for the G2P service - default: 
    * http://clarin.phonetik.uni-muenchen.de/BASWebServices/services/runG2P
