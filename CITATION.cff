@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: nzilbb.bas Java package
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Robert
+    family-names: Fromont
+    email: robert.fromont@canterbury.ac.nz
+    affiliation: NZILBB
+    orcid: 'https://orcid.org/0000-0001-5271-5487'
+repository-code: 'https://github.com/nzilbb/bas/'
+abstract: >-
+  API for calling the Bavarian Archive for Speech Signals (BAS) services:
+  http://hdl.handle.net/11858/00-1779-0000-0028-421B-4
+license: AGPL-3.0-or-later
+version: 0.1.1
+date-released: '2022-03-07'
