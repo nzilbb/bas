@@ -1,22 +1,197 @@
-# This CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to generate yours today!
-
 cff-version: 1.2.0
-title: nzilbb.bas Java package
-message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
 type: software
+message: If you use this software, please cite it as below.
+title: nzilbb.bas
+version: 0.1.1
+date-released: 2023-02-08
 authors:
   - given-names: Robert
     family-names: Fromont
     email: robert.fromont@canterbury.ac.nz
     affiliation: NZILBB
     orcid: 'https://orcid.org/0000-0001-5271-5487'
-repository-code: 'https://github.com/nzilbb/bas/'
+repository-code: https://github.com/nzilbb/bas/tree/main
 abstract: >-
   API for calling the Bavarian Archive for Speech Signals (BAS) services:
   http://hdl.handle.net/11858/00-1779-0000-0028-421B-4
-license: AGPL-3.0-or-later
-version: 0.1.1
-date-released: '2022-03-07'
+references:
+- type: software
+  title: Apache Commons Codec
+  version: '1.11'
+  abbreviation: commons-codec:commons-codec
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Commons_Codec
+    directory.
+  authors:
+  - name: Henri Yandell
+    email: bayard@apache.org
+  - name: Tim OBrien
+    email: tobrien@apache.org
+  - name: Scott Sanders
+    email: sanders@totalsync.com
+  - name: Rodney Waldhoff
+    email: rwaldhoff@apache.org
+  - name: Daniel Rall
+    email: dlr@finemaltcoding.com
+  - name: Jon S. Stevens
+    email: jon@collab.net
+  - name: Gary Gregory
+    email: ggregory@apache.org
+  - name: David Graham
+    email: dgraham@apache.org
+  - name: Julius Davies
+    email: julius@apache.org
+  - name: Thomas Neidhart
+    email: tn@apache.org
+  repository-code: http://svn.apache.org/viewvc/commons/proper/codec/trunk
+- type: software
+  title: Apache Commons Logging
+  version: '1.2'
+  abbreviation: commons-logging:commons-logging
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Commons_Logging
+    directory.
+  authors:
+  - name: Juozas Baliuka
+    email: baliuka@apache.org
+  - name: Morgan Delagrange
+    email: morgand@apache.org
+  - name: Peter Donald
+    email: donaldp@apache.org
+  - name: Robert Burrell Donkin
+    email: rdonkin@apache.org
+  - name: Simon Kitching
+    email: skitching@apache.org
+  - name: Dennis Lundberg
+    email: dennisl@apache.org
+  - name: Costin Manolache
+    email: costin@apache.org
+  - name: Craig McClanahan
+    email: craigmcc@apache.org
+  - name: Thomas Neidhart
+    email: tn@apache.org
+  - name: Scott Sanders
+    email: sanders@apache.org
+  - name: Richard Sitze
+    email: rsitze@apache.org
+  - name: Brian Stansberry
+  - name: Rodney Waldhoff
+    email: rwaldhoff@apache.org
+  repository-code: http://svn.apache.org/repos/asf/commons/proper/logging/trunk
+- type: software
+  title: Apache HttpClient
+  version: 4.5.13
+  abbreviation: org.apache.httpcomponents:httpclient
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_HttpClient
+    directory.
+  authors:
+  - name: Ortwin Glueck
+    email: oglueck -at- apache.org
+  - name: Oleg Kalnichevski
+    email: olegk -at- apache.org
+  - name: Asankha C. Perera
+    email: asankha -at- apache.org
+  - name: Sebastian Bazley
+    email: sebb -at- apache.org
+  - name: Erik Abele
+    email: erikabele -at- apache.org
+  - name: Ant Elder
+    email: antelder -at- apache.org
+  - name: Paul Fremantle
+    email: pzf -at- apache.org
+  - name: Roland Weber
+    email: rolandw -at- apache.org
+  - name: Sam Berlin
+    email: sberlin -at- apache.org
+  - name: Sean C. Sullivan
+    email: sullis -at- apache.org
+  - name: Jonathan Moore
+    email: jonm -at- apache.org
+  - name: Gary Gregory
+    email: ggregory -at- apache.org
+  - name: William Speirs
+    email: wspeirs at apache.org
+  - name: Karl Wright
+    email: kwright -at- apache.org
+  - name: Francois-Xavier Bonnet
+    email: fx -at- apache.org
+  repository-code: https://github.com/apache/httpcomponents-client/tree/4.5.13/httpclient
+- type: software
+  title: Apache HttpClient Mime
+  version: 4.5.13
+  abbreviation: org.apache.httpcomponents:httpmime
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_HttpClient_Mime
+    directory.
+  authors:
+  - name: Ortwin Glueck
+    email: oglueck -at- apache.org
+  - name: Oleg Kalnichevski
+    email: olegk -at- apache.org
+  - name: Asankha C. Perera
+    email: asankha -at- apache.org
+  - name: Sebastian Bazley
+    email: sebb -at- apache.org
+  - name: Erik Abele
+    email: erikabele -at- apache.org
+  - name: Ant Elder
+    email: antelder -at- apache.org
+  - name: Paul Fremantle
+    email: pzf -at- apache.org
+  - name: Roland Weber
+    email: rolandw -at- apache.org
+  - name: Sam Berlin
+    email: sberlin -at- apache.org
+  - name: Sean C. Sullivan
+    email: sullis -at- apache.org
+  - name: Jonathan Moore
+    email: jonm -at- apache.org
+  - name: Gary Gregory
+    email: ggregory -at- apache.org
+  - name: William Speirs
+    email: wspeirs at apache.org
+  - name: Karl Wright
+    email: kwright -at- apache.org
+  - name: Francois-Xavier Bonnet
+    email: fx -at- apache.org
+  repository-code: https://github.com/apache/httpcomponents-client/tree/4.5.13/httpmime
+- type: software
+  title: Apache HttpCore
+  version: 4.4.13
+  abbreviation: org.apache.httpcomponents:httpcore
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_HttpCore
+    directory.
+  authors:
+  - name: Ortwin Glueck
+    email: oglueck -at- apache.org
+  - name: Oleg Kalnichevski
+    email: olegk -at- apache.org
+  - name: Asankha C. Perera
+    email: asankha -at- apache.org
+  - name: Sebastian Bazley
+    email: sebb -at- apache.org
+  - name: Erik Abele
+    email: erikabele -at- apache.org
+  - name: Ant Elder
+    email: antelder -at- apache.org
+  - name: Paul Fremantle
+    email: pzf -at- apache.org
+  - name: Roland Weber
+    email: rolandw -at- apache.org
+  - name: Sam Berlin
+    email: sberlin -at- apache.org
+  - name: Sean C. Sullivan
+    email: sullis -at- apache.org
+  - name: Jonathan Moore
+    email: jonm -at- apache.org
+  - name: Gary Gregory
+    email: ggregory -at- apache.org
+  - name: William Speirs
+    email: wspeirs at apache.org
+  - name: Karl Wright
+    email: kwright -at- apache.org
+  - name: Francois-Xavier Bonnet
+    email: fx -at- apache.org
+  repository-code: https://github.com/apache/httpcomponents-core/tree/4.4.13/httpcore

@@ -2,3 +2,5 @@
 *~
 # maven target directory
 target
+# maven versions backups
+*.versionsBackup

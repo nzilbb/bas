@@ -64,6 +64,7 @@ public class LanguageTag {
    * @return A map of language names to ISO639-2 (3-letter) codes. Names are all lowercase
    * and in English. 
    */
+  public Properties getIso639MapNameTo2() { return iso639MapNameTo2; }
    
   /**
    * A map of ISO639-1 (2-letter) to ISO639-2 (3-letter) codes.
